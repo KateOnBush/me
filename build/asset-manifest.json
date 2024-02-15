@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.47a809af.css",
+    "main.js": "/static/js/main.b86b9c85.js",
+    "static/media/Aileron-Bold.otf": "/static/media/Aileron-Bold.448662b13d772c05bfd0.otf",
+    "static/media/Aileron-Light.otf": "/static/media/Aileron-Light.84cea837c2d4566271aa.otf",
+    "index.html": "/index.html",
+    "main.47a809af.css.map": "/static/css/main.47a809af.css.map",
+    "main.b86b9c85.js.map": "/static/js/main.b86b9c85.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47a809af.css",
+    "static/js/main.b86b9c85.js"
+  ]
+}

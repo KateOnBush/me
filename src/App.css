@@ -1,0 +1,17 @@
+@font-face {
+  src: url("fonts/Aileron-Bold.otf");
+  font-family: mainFontBold;
+}
+
+@font-face {
+  src: url("fonts/Aileron-Light.otf");
+  font-family: mainFont;
+}
+
+* {
+  font-family: mainFont, sans-serif !important;
+}
+
+*.bold {
+  font-family: mainFontBold, sans-serif !important;
+}
