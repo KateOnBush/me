@@ -15,3 +15,23 @@
 *.bold {
   font-family: mainFontBold, sans-serif !important;
 }
+
+.blur-transition {
+}
+
+.translate-transition {
+  transition: transform 2s ease-in-out;
+}
+
+.blur-transition-active {
+  animation: blur 2s ease-in-out;
+}
+
+@keyframes blur {
+  0%, 100% {
+    filter: blur(0px);
+  }
+  20%, 80% {
+    filter: blur(48px) opacity(10%) sepia(50%);
+  }
+}
