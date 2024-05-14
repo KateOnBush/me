@@ -7,6 +7,7 @@ import Main from "./Main";
 import {Container, Engine, ISourceOptions} from "@tsparticles/engine/types";
 import {loadBaseMover} from "@tsparticles/move-base";
 import {ChevronRightIcon} from "@heroicons/react/16/solid";
+import {usePageStackContext} from "./contexts/PageStack";
 
 export interface IPageProps {
     changePage: (target: PageList) => void;
@@ -75,31 +76,22 @@ function App() {
         }, time - 20 * 40);
     }
 
-    let [pageStack, setPageStack] = useState<PageList[]>([PageList.HOME]);
-    let addPage = (page: PageList) => {
-        pageStack.push(page);
-        setPageStack(pageStack);
-    }
-    let popPage = () => {
-        if (pageStack.length <= 1) return;
-        pageStack.pop();
-        setPageStack(pageStack);
-    }
+    let pageList = usePageStackContext();
 
     return (
         <div className="w-full h-full
         bg-gradient-to-br from-indigo-950 to-black flex justify-center items-center flex-col">
             <Particles options={particleOptionsRef.current} particlesLoaded={particlesLoaded}/>
             <header className="w-full h-1/6 flex justify-center items-center">
-                {pageStack.map((page, i) =>
+                {pageList.stack.map((page, i) =>
                     <>
                         <span className="text-white">{PageNameList[page]}</span>
-                        {i === pageStack.length - 1 || <ChevronRightIcon/>}
+                        {i === pageList.stack.length - 1 || <ChevronRightIcon/>}
                     </>
                 )}
             </header>
             <div className="bg-opacity-40 w-full h-5/6 bg-black relative overflow-hidden">
-                <Main triggerTransition={triggerStarsTransition} addPage={addPage} popPage={popPage}/>
+                <Main triggerTransition={triggerStarsTransition}/>
             </div>
 
             <footer className="w-full h-1/6">

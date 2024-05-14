@@ -1,5 +1,5 @@
 import React, {createContext, Dispatch, ReactNode, SetStateAction, useContext, useState} from "react";
-import {PageList} from "./App";
+import {PageList} from "../App";
 
 const PagesContext = createContext<PagesContextProps | null>(null);
 

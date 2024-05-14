@@ -1,24 +1,25 @@
 import React, {useState} from "react";
-import {usePagesContext} from "./Pages";
+import {usePagesContext} from "./contexts/Pages";
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import {PageList} from "./App";
+import {usePageStackContext} from "./contexts/PageStack";
 
 interface IMainProps {
     triggerTransition: (time: number, direction: number) => void;
-    addPage: (page: PageList) => void;
-    popPage: () => void;
 }
 
-export default function Main({ triggerTransition, addPage, popPage }: IMainProps) {
+export default function Main({ triggerTransition }: IMainProps) {
 
     let {page, setPage} = usePagesContext();
     let [transitionDirection, setTransitionDirection] = useState<number>(0);
     let [pageLate, setPageLate] = useState<PageList>(page);
+    let pageList = usePageStackContext();
+
     const changePage = function (target: PageList) {
         setTransitionDirection(Math.sign(target - page));
         triggerTransition(2000, -Math.sign(target - page));
-        addPage(target);
+        pageList.push(target);
         setPage(target);
         setTimeout(() => {
             setTransitionDirection(0);
@@ -26,7 +27,6 @@ export default function Main({ triggerTransition, addPage, popPage }: IMainProps
         }, 2000);
     }
     let classString = transitionDirection === 0 ? "" : ((transitionDirection === -1 ? "translate-x-[100%]" : "translate-x-[-100%]") + " blur-transition-active translate-transition");
-    let transitionerString = transitionDirection === -1 ? "left-[100%]" : "right-[100%]";
     function getPage(pageNumber: PageList) {
         switch (pageNumber) {
             case PageList.HOME:
